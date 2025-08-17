@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Password from "@/components/ui/Password";
+import config from "@/config";
 import { useLoginMutation } from "@/redux/features/auth/auth.api";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
@@ -25,7 +26,7 @@ const loginSchema = z.object({
 });
 
 const LoginForm = () => {
-  const [login] = useLoginMutation();
+  const [login, { isLoading }] = useLoginMutation();
   const navigate = useNavigate();
 
   const form = useForm({
@@ -43,10 +44,19 @@ const LoginForm = () => {
       if (res.success) {
         toast.success(res.message);
         navigate("/");
+        form.reset();
       }
     } catch (error: any) {
       console.error("login error", error);
-      toast.error(error.data.message);
+
+      if (error.data.message === "Password does not Match") {
+        toast.error("Invalid Credentials");
+      }
+
+      if (error.data.message === "User is not verified") {
+        toast.error("Your Account is not Verified");
+        navigate("/verify", { state: data.email });
+      }
     }
   };
   return (
@@ -93,7 +103,7 @@ const LoginForm = () => {
             />
 
             <Button type="submit" className="w-full cursor-pointer">
-              Login
+              {isLoading ? "Loading..." : "Login"}
             </Button>
           </form>
         </Form>
@@ -105,6 +115,7 @@ const LoginForm = () => {
         </div>
 
         <Button
+          onClick={() => window.open(`${config.baseUrl}/auth/google`)}
           type="button"
           variant="outline"
           className="w-full cursor-pointer"
