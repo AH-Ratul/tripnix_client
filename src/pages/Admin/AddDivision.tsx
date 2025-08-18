@@ -1,5 +1,5 @@
 
-const AdminLayout = () => {
+const AddDivision = () => {
     return (
         <div>
             
@@ -7,4 +7,4 @@ const AdminLayout = () => {
     );
 };
 
-export default AdminLayout;
+export default AddDivision;
