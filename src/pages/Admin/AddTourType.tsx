@@ -1,3 +1,4 @@
+import { DeleteConfirmation } from "@/components/DeleteConfirmation";
 import { AddTourTypeModal } from "@/components/modules/Admin/TourType/AddTourTypeModal";
 import { Button } from "@/components/ui/button";
 import {
@@ -8,11 +9,30 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { useGetTourTypeQuery } from "@/redux/features/tour/tour.api";
+import {
+  useGetTourTypeQuery,
+  useRemoveTourTypeMutation,
+} from "@/redux/features/tour/tour.api";
 import { Edit, Trash } from "lucide-react";
+import { toast } from "sonner";
 
 const AddTourType = () => {
   const { data } = useGetTourTypeQuery(undefined);
+  const [removeTourType] = useRemoveTourTypeMutation(undefined);
+
+  const handleRemoveTourType = async (tourId: string) => {
+    const toastId = toast.loading("Removing");
+    try {
+      const res = await removeTourType(tourId).unwrap();
+
+      if (res.success) {
+        toast.success("Removed", { id: toastId });
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4">
       <div className="flex justify-between items-center my-8">
@@ -42,12 +62,16 @@ const AddTourType = () => {
                   </Button>
                 </TableCell>
                 <TableCell>
-                  <Button
-                    size={"sm"}
-                    className="cursor-pointer hover:bg-destructive"
+                  <DeleteConfirmation
+                    onConfirm={() => handleRemoveTourType(type._id)}
                   >
-                    <Trash />
-                  </Button>
+                    <Button
+                      size={"sm"}
+                      className="cursor-pointer hover:bg-destructive"
+                    >
+                      <Trash />
+                    </Button>
+                  </DeleteConfirmation>
                 </TableCell>
               </TableRow>
             ))}
