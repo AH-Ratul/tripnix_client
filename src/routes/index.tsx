@@ -12,12 +12,27 @@ import { withAuth } from "@/utils/withAuth";
 import { role } from "@/constants/role";
 import type { TRole } from "@/types";
 import UnAuthorized from "@/pages/UnAuthorized";
+import HomePage from "@/pages/HomePage";
+import Tours from "@/pages/Tours";
+import TourDetails from "@/pages/TourDetails";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component: App,
     children: [
+      {
+        Component: HomePage,
+        index: true,
+      },
+      {
+        path: "tours",
+        Component: Tours,
+      },
+      {
+        path: "tours/:id",
+        Component: TourDetails,
+      },
       {
         path: "about",
         Component: About,
