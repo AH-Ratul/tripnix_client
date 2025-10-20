@@ -175,7 +175,14 @@ const AddTour = () => {
       }
     } catch (err: any) {
       console.log(err);
-      toast.error(err.data.message, { id: toastId });
+
+      if (err) {
+        toast.error(err.data.message, { id: toastId });
+      } else if (err.data === "Network Error") {
+        toast.error(err.data, { id: toastId });
+      } else {
+        toast.error("Server is unreachable or timed out.", { id: toastId });
+      }
     }
   };
   return (
