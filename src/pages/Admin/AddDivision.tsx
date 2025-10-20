@@ -1,5 +1,6 @@
 import { DeleteConfirmation } from "@/components/DeleteConfirmation";
 import AddDivisionModal from "@/components/modules/Admin/Division/AddDivisionModal";
+import Loader from "@/components/shared/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import {
   Table,
@@ -17,7 +18,7 @@ import { Edit, Trash } from "lucide-react";
 import { toast } from "sonner";
 
 const AddDivision = () => {
-  const { data } = useGetDivisionQuery(undefined);
+  const { data, isLoading } = useGetDivisionQuery(undefined);
   const [removeDivision] = useRemoveDivisionMutation();
 
   const handleRemoveDivision = async (divisionId: string) => {
@@ -32,12 +33,14 @@ const AddDivision = () => {
       console.log(err);
     }
   };
+
   return (
     <div className="w-full max-w-7xl mx-auto px-4">
-      <div className="flex justify-between items-center my-8">
+      <div className="flex justify-between items-center my-5">
         <h1 className="text-xl font-semibold">Divisions</h1>
         <AddDivisionModal />
       </div>
+      {isLoading ? <Loader /> : ""}
       <div className="border border-muted rounded-md">
         <Table>
           <TableHeader>
@@ -48,6 +51,7 @@ const AddDivision = () => {
               <TableHead />
             </TableRow>
           </TableHeader>
+
           <TableBody>
             {data?.map(
               (division: {
