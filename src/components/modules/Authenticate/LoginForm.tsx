@@ -1,3 +1,4 @@
+import Loader from "@/components/shared/Loader/Loader";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -49,8 +50,8 @@ const LoginForm = () => {
     } catch (error: any) {
       console.error("login error", error);
 
-      if (error.data.message === "Password does not Match") {
-        toast.error("Invalid Credentials");
+      if (error) {
+        toast.error(error.data.message);
       }
 
       if (error.data.message === "User is not verified") {
@@ -103,7 +104,7 @@ const LoginForm = () => {
             />
 
             <Button type="submit" className="w-full cursor-pointer">
-              {isLoading ? "Loading..." : "Login"}
+              {isLoading ? <Loader /> : "Login"}
             </Button>
           </form>
         </Form>
