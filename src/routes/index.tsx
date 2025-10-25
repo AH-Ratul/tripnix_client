@@ -15,6 +15,9 @@ import UnAuthorized from "@/pages/UnAuthorized";
 import HomePage from "@/pages/HomePage";
 import Tours from "@/pages/Tours";
 import TourDetails from "@/pages/TourDetails";
+import Booking from "@/pages/Booking";
+import { SuccessPage } from "@/pages/Payment/Success";
+import { FailurePage } from "@/pages/Payment/Fail";
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +35,10 @@ export const router = createBrowserRouter([
       {
         path: "tours/:id",
         Component: TourDetails,
+      },
+      {
+        path: "booking/:id",
+        Component: withAuth(Booking),
       },
       {
         path: "about",
@@ -70,5 +77,13 @@ export const router = createBrowserRouter([
   {
     path: "/unauthorized",
     Component: UnAuthorized,
+  },
+  {
+    path: "/payment/success",
+    Component: SuccessPage,
+  },
+  {
+    path: "/payment/fail",
+    Component: FailurePage,
   },
 ]);
