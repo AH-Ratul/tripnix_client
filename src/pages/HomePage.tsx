@@ -9,7 +9,7 @@ const HomePage = () => {
       <HeroSection />
 
       {/* Tour Section */}
-      <div className="container mx-auto px-3 lg:px-0 mt-20">
+      <div className="container mx-auto px-3  mt-20">
         <div className="flex justify-between items-center mb-5">
           <p className="text-3xl font-medium font-marcellus">Recent Tours</p>
           <Link
