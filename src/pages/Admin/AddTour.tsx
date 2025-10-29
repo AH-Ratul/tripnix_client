@@ -158,8 +158,8 @@ const AddTour = () => {
       endDate: formatISO(data.endDate),
       included: data.included.map((item: { value: string }) => item.value),
       excluded: data.excluded.map((item: { value: string }) => item.value),
-      amenities: data.excluded.map((item: { value: string }) => item.value),
-      tourPlan: data.excluded.map((item: { value: string }) => item.value),
+      amenities: data.amenities.map((item: { value: string }) => item.value),
+      tourPlan: data.tourPlan.map((item: { value: string }) => item.value),
     };
 
     const formData = new FormData();
