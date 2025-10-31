@@ -16,16 +16,22 @@ const Tours = () => {
   });
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="h-dvh flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
   return (
     <div className="container mx-auto px-3 my-8 ">
-      <div className="flex justify-between items-center">
-        <h1 className="text-2xl font-marcellus mb-5 font-bold">All Tours</h1>
+      <div className="flex flex-col md:flex-row  gap-6">
         <TourFilters />
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
-        <TourCard tourData={data} />
+
+        <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+            <TourCard tourData={data} />
+          </div>
+        </div>
       </div>
     </div>
   );
