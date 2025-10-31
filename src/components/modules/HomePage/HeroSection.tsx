@@ -11,30 +11,34 @@ export const HeroSection = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000); // Change image every 5 seconds
+    }, 10000); // Change image every 10 seconds
 
     return () => clearInterval(interval);
   }, [images.length]);
 
   return (
     <section className="relative w-full py-2 h-[470px] flex items-center justify-center overflow-hidden">
-      {/* Background Images with smooth transition */}
       <div className="absolute inset-0 z-0">
         {images.map((image, index) => (
           <div
             key={image}
-            style={{ backgroundImage: `url(${image})` }}
-            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out
-              ${
-                index === currentImageIndex
-                  ? "opacity-100 scale-100"
-                  : "opacity-0 scale-105"
-              }
-            `}
+            // Tailwind class to signal GPU optimization for these properties
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-out will-change-[opacity,transform]
+                        ${
+                          index === currentImageIndex
+                            ? "opacity-100 scale-102"
+                            : "opacity-0 scale-100"
+                        }
+                    `}
+            style={{ backgroundImage: `url('${image}')` }}
           ></div>
         ))}
-        {/* Pulsing overlay for a stunning effect */}
-        <div className="absolute inset-0 bg-black opacity-40 backdrop-blur-sm animate-pulse-slow"></div>
+
+        {/* Static Gradient Overlay for polished contrast (Less performance heavy than pulse animation) */}
+        <div
+          className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+          style={{ zIndex: 1 }} // Ensure this is above the images but below content
+        ></div>
       </div>
 
       {/* Main content section */}
