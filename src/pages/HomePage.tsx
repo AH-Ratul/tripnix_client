@@ -9,7 +9,11 @@ const HomePage = () => {
   const { data, isLoading } = useGetAllTourQuery(undefined);
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="h-dvh flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
   return (
     <div>
@@ -27,7 +31,7 @@ const HomePage = () => {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
           <TourCard tourData={data} />
         </div>
       </div>
