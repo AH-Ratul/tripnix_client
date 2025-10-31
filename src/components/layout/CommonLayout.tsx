@@ -10,7 +10,7 @@ const CommonLayout = ({ children }: IProps) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
-      <div className="grow-1 bg-coquelicot/5">
+      <div className="grow-1 bg-[#fbfbfb]">
         {children}
       </div>
       <Footer />
