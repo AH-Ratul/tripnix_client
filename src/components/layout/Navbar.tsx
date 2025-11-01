@@ -159,7 +159,7 @@ export default function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button className="rounded-full w-11 h-11 font-extrabold text-3xl">
-                  {data?.data?.name.slice(0, 1)}
+                  {data?.data?.name.slice(0, 1).toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
 
