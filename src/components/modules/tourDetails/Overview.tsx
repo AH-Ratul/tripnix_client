@@ -12,7 +12,7 @@ const Overview = ({ departure, arrival, maxGuest, minAge }: TProps) => {
     <div className="mt-8">
       <h1 className="font-medium text-2xl mb-4">Overview</h1>
 
-      <div className="text-muted-foreground mb-3 flex flex-col md:flex-row md:justify-between items-center gap-2">
+      <div className="text-muted-foreground mb-3 flex flex-col xl:flex-row md:justify-between items-center gap-2">
         <div className="w-full">
           <p className="flex items-center gap-2">
             <MapPinPlus width={17} />
@@ -26,7 +26,7 @@ const Overview = ({ departure, arrival, maxGuest, minAge }: TProps) => {
           </p>
         </div>
 
-        <div className=" w-full">
+        <div className="w-full xl:w-96">
           <p className="flex items-center gap-2">
             <Users width={17} /> Travelers:{" "}
             <span className="font-medium">{maxGuest} guests</span>
