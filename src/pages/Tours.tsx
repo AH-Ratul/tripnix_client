@@ -24,11 +24,11 @@ const Tours = () => {
   }
   return (
     <div className="container mx-auto px-3 my-8 ">
-      <div className="flex flex-col md:flex-row  gap-6">
+      <div className="flex flex-col lg:flex-row  gap-6">
         <TourFilters />
 
         <div>
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             <TourCard tourData={data} />
           </div>
         </div>
