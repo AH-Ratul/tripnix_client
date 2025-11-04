@@ -20,7 +20,11 @@ const TourDetails = () => {
   const { data: tour, isLoading } = useGetSingleTourQuery(id);
 
   if (isLoading) {
-    return <Loader />;
+    return (
+      <div className="h-dvh flex justify-center items-center">
+        <Loader />
+      </div>
+    );
   }
   return (
     <div className="container mx-auto my-16 px-3 flex flex-col lg:flex-row gap-12 justify-between">
@@ -37,7 +41,7 @@ const TourDetails = () => {
         </p>
 
         {/* Dates */}
-        <div className="flex flex-col sm:flex-row w-fit gap-3 my-5">
+        <div className="flex flex-col xl:flex-row w-fit gap-3 my-5">
           <span className="flex items-center gap-1.5 text-coquelicot bg-coquelicot/15 rounded-md px-5 py-2">
             <CalendarCheck width={16} />
             Starts : {format(tour.startDate, "PPP")}
