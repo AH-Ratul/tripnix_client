@@ -55,7 +55,7 @@ const TourFilters = () => {
     setSearchParams(params);
   };
   return (
-    <div className="border h-fit bg-white p-3 rounded-md shadow-md md:w-[500px]">
+    <div className="border h-fit bg-white p-3 rounded-md shadow-md lg:w-72">
       <div className="flex justify-between items-center">
         <h1 className="font-medium text-lg">Filter</h1>
         <Button onClick={handleClear} variant="outline">
