@@ -24,7 +24,7 @@ const HomePage = () => {
         <div className="flex justify-between items-center mb-5">
           <p className="text-3xl font-medium font-marcellus">Recent Tours</p>
           <Link
-            to={""}
+            to="/tours"
             className="hover:text-coquelicot border-b border-black hover:border-coquelicot transition-normal duration-300 ease-in-out"
           >
             View All Tours
