@@ -1,4 +1,4 @@
-import { Minus } from "lucide-react";
+import { Dot } from "lucide-react";
 
 type TProps = {
   tourPlan: string[];
@@ -12,9 +12,12 @@ const TourPlan = ({ tourPlan }: TProps) => {
       <div>
         {tourPlan.map((plan: any) => (
           <div key={plan} className="flex flex-col my-2 text-muted-foreground">
-            <span className="flex items-center gap-1">
-              <Minus width={17} /> {plan}
-            </span>
+            <p className="relative text-justify pl-10">
+              <span className="absolute left-0 top-0">
+                <Dot width={50} />
+              </span>
+              {plan}
+            </p>
           </div>
         ))}
       </div>
