@@ -19,7 +19,7 @@ export function AddTourTypeModal() {
   const form = useForm();
   const [addTourType, { isLoading }] = useAddTourTypeMutation(undefined);
 
-  const onSubmit = async (data) => {
+  const onSubmit = async (data: any) => {
     try {
       const res = await addTourType({ name: data.name }).unwrap();
 
