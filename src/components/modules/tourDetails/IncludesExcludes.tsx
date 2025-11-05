@@ -17,9 +17,12 @@ const IncludesExcludes = ({ included, excluded }: TProps) => {
               key={include}
               className="flex flex-col my-2 text-muted-foreground "
             >
-              <span className="flex items-center gap-2">
-                <Check color="green" width={17} /> {include}
-              </span>
+              <p className="relative pl-6">
+                <span className="absolute left-0 top-0">
+                  <Check color="green" width={17} />
+                </span>
+                {include}
+              </p>
             </div>
           ))}
         </div>
@@ -30,9 +33,12 @@ const IncludesExcludes = ({ included, excluded }: TProps) => {
               key={exclude}
               className="flex flex-col my-2 text-muted-foreground "
             >
-              <span className="flex items-center gap-2">
-                <X color="red" width={17} /> {exclude}
-              </span>
+              <p className="relative pl-6">
+                <span className="absolute left-0 top-0">
+                  <X color="red" width={17} />
+                </span>
+                {exclude}
+              </p>
             </div>
           ))}
         </div>
