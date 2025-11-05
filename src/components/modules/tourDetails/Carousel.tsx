@@ -17,7 +17,7 @@ const ImageCarousel = ({ images }: TProps) => {
         <CarouselContent>
           {images?.map((image: string) => (
             <CarouselItem key={image}>
-              <img src={image} alt="img" className="h-96 w-full rounded-md" />
+              <img src={image} alt="img" className="h-80 w-full rounded-md" />
             </CarouselItem>
           ))}
         </CarouselContent>
