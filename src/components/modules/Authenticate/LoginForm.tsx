@@ -60,6 +60,11 @@ const LoginForm = () => {
       }
     }
   };
+
+  const insertDemoCredentials = () => {
+    form.setValue("email", "admin@tripnix.com");
+    form.setValue("password", "admin123");
+  };
   return (
     <>
       <div className="flex flex-col gap-6">
@@ -108,6 +113,15 @@ const LoginForm = () => {
             </Button>
           </form>
         </Form>
+
+        <Button
+          onClick={insertDemoCredentials}
+          type="button"
+          variant="ghost"
+          className="underline w-full cursor-pointer mt-1"
+        >
+          Use demo credentials
+        </Button>
 
         <div className="relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t after:border-border">
           <span className="relative z-10 bg-background px-2 text-muted-foreground">
