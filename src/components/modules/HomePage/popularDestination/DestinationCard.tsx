@@ -1,3 +1,5 @@
+import { memo } from "react";
+
 type TProps = {
   country?: string;
   place?: string;
@@ -7,16 +9,18 @@ type TProps = {
 const DestinationCard = ({ country, place, image }: TProps) => {
   return (
     <div
-      className="relative overflow-hidden rounded-3xl shadow-sm"
+      className="group relative overflow-hidden rounded-3xl shadow-sm"
       style={{ minHeight: 250 }}
     >
       <div
-        className="absolute inset-0 transition-transform duration-500 ease-out will-change-[transform] transform hover:scale-105"
+        className="absolute inset-0 transition-transform duration-500 ease-out will-change-transform transform group-hover:scale-105"
         style={{
           backgroundImage: `linear-gradient(45deg, rgba(0,0,0,0.4), rgba(0,0,0,0.7)), url(${image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
+        role="img"
+        aria-label={`${place}, ${country}`}
       ></div>
 
       <div className="absolute inset-0 p-6 z-10 flex flex-col justify-between">
@@ -32,4 +36,4 @@ const DestinationCard = ({ country, place, image }: TProps) => {
   );
 };
 
-export default DestinationCard;
+export default memo(DestinationCard);
