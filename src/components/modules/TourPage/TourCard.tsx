@@ -14,8 +14,11 @@ const TourCard = ({ tourData }: any) => {
             <div key={tour._id} className="border rounded-2xl w-full bg-white">
               <img
                 src={tour.images[0]}
-                alt="img"
-                className="w-full h-56 rounded-t-2xl"
+                alt={tour.title || "Tour image"}
+                className="w-full h-56 rounded-t-2xl object-cover"
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
               />
 
               <div className="p-3">
