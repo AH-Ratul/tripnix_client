@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Marcellus&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:ital@0;1&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -16,6 +16,7 @@
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
   --color-secondary: var(--secondary);
+  --color-secondary-1: var(--secondary-1);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
@@ -39,7 +40,9 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-coquelicot: #fd4621;
+  --color-dark-3: var(--dark-3);
   --font-marcellus: "Marcellus", serif;
+  --font-jost: "Jost", sans-serif;
 }
 
 :root {
