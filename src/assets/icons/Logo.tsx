@@ -4,7 +4,9 @@ const Logo = () => {
   return (
     <div>
       <Link to="/">
-        <h1 className="font-bold text-2xl text-primary">TripNix</h1>
+        <h1 className="font-bold tracking-wide text-3xl font-jost">
+          TripNix
+        </h1>
       </Link>
     </div>
   );
