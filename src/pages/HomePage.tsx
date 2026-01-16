@@ -10,7 +10,7 @@ const HomePage = () => {
 
   if (isLoading) {
     return (
-      <div className="h-dvh flex justify-center items-center">
+      <div className="h-dvh flex justify-center items-center bg-white z-50">
         <Loader />
       </div>
     );
@@ -19,13 +19,15 @@ const HomePage = () => {
     <div>
       <HeroSection />
 
+      <PopularDestination />
+
       {/* Tour Section */}
       <div className="container mx-auto px-3  mt-20">
-        <div className="flex justify-between items-center mb-5">
-          <p className="text-3xl font-medium font-marcellus">Recent Tours</p>
+        <div className="flex justify-between items-center mb-5 font-jost">
+          <p className="text-3xl font-medium ">Recent Tours</p>
           <Link
             to="/tours"
-            className="hover:text-coquelicot border-b border-black hover:border-coquelicot transition-normal duration-300 ease-in-out"
+            className="hover:text-secondary-1 border-b border-black hover:border-secondary-1 transition-normal duration-300 ease-in-out"
           >
             View All Tours
           </Link>
@@ -35,8 +37,6 @@ const HomePage = () => {
           <TourCard tourData={data?.data} />
         </div>
       </div>
-
-      <PopularDestination />
     </div>
   );
 };
