@@ -1,11 +1,5 @@
-
-
 const Analytics = () => {
-    return (
-        <div>
-            aaa
-        </div>
-    );
+  return <div>Work in progress...</div>;
 };
 
 export default Analytics;
