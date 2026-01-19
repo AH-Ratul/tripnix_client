@@ -26,7 +26,7 @@ const Tours = () => {
     limit: 9,
     page: currentPage,
   });
-  
+
   const totalPage = data?.meta?.totalPage;
 
   if (isLoading) {
@@ -37,11 +37,13 @@ const Tours = () => {
     );
   }
   return (
-    <div className="container mx-auto px-3 my-8">
+    <div className="container mx-auto px-3 lg:px-16 mt-32 bg-white">
       <div className="flex flex-col lg:flex-row  gap-6">
-        <TourFilters />
+        <div className="lg:w-1/4">
+          <TourFilters />
+        </div>
 
-        <div>
+        <div className="lg:w-[75%]">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
             <TourCard tourData={data?.data} />
           </div>
@@ -63,7 +65,9 @@ const Tours = () => {
                 />
               </PaginationItem>
               <PaginationItem>
-                <PaginationLink>{currentPage}</PaginationLink>
+                <PaginationLink>
+                  {currentPage} of {totalPage}
+                </PaginationLink>
               </PaginationItem>
               <PaginationItem>
                 <PaginationNext

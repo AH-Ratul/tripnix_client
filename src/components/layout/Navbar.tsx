@@ -11,7 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 import {
   authApi,
   useLogoutMutation,
@@ -28,6 +28,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
+import { useEffect, useState } from "react";
 
 // Navigation links array to be used in both desktop and mobile menus
 const navigationLinks = [
@@ -42,6 +43,32 @@ export default function Navbar() {
   const { data } = useUserInfoQuery(undefined);
   const [logout] = useLogoutMutation();
   const dispatch = useAppDispatch();
+  const [scrolled, setScrolled] = useState(false);
+  const route = useLocation();
+  const isHomePage = route.pathname === "/";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    if (isHomePage) {
+      handleScroll();
+      window.addEventListener("scroll", handleScroll);
+    }
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isHomePage]);
+
+  const navClasses = isHomePage
+    ? scrolled
+      ? "bg-primary shadow-lg"
+      : "bg-transparent"
+    : "bg-dark-3 text-white";
 
   const handleLogout = async () => {
     await logout(undefined);
@@ -49,7 +76,9 @@ export default function Navbar() {
   };
 
   return (
-    <header className="border-b">
+    <header
+      className={`fixed w-full top-0 z-20 py-2.5 md:px-5 xl:px-16 transition-all duration-300 ease-out ${navClasses}`}
+    >
       <div className="container mx-auto flex h-16 items-center justify-between gap-4 px-2">
         {/* Left side */}
         <div className="flex items-center gap-2">
@@ -57,14 +86,14 @@ export default function Navbar() {
           <Popover>
             <PopoverTrigger asChild>
               <Button
-                className="group size-8 md:hidden"
+                className={`group size-8 md:hidden text-white`}
                 variant="ghost"
                 size="icon"
               >
                 <svg
                   className="pointer-events-none"
-                  width={16}
-                  height={16}
+                  width={20}
+                  height={20}
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -115,9 +144,9 @@ export default function Navbar() {
           </Popover>
 
           {/*----- LOGO -----*/}
-          <Link to="/" className="text-primary hover:text-primary/90">
+          <span className={`${isHomePage ? "text-white" : "text-white"}`}>
             <Logo />
-          </Link>
+          </span>
         </div>
 
         {/*-------------------- navigation links ------------------------*/}
@@ -130,9 +159,16 @@ export default function Navbar() {
                   {link.role === "PUBLIC" && (
                     <NavigationMenuItem
                       key={index}
-                      className="w-full font-bold text-muted-foreground"
+                      className="w-full font-bold"
                     >
-                      <NavigationMenuLink asChild className="py-1.5 text-base">
+                      <NavigationMenuLink
+                        asChild
+                        className={`py-1.5 text-base ${
+                          isHomePage
+                            ? "text-white hover:bg-secondary-1"
+                            : "hover:text-primary transition-colors"
+                        }`}
+                      >
                         <Link to={link.href}>{link.label}</Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -140,9 +176,16 @@ export default function Navbar() {
                   {link.role === data?.data?.role && (
                     <NavigationMenuItem
                       key={index}
-                      className="w-full font-bold text-muted-foreground"
+                      className="w-full font-bold hover:text-primary"
                     >
-                      <NavigationMenuLink asChild className="py-1.5 text-base">
+                      <NavigationMenuLink
+                        asChild
+                        className={`py-1.5 text-base ${
+                          isHomePage
+                            ? "text-white hover:bg-secondary-1"
+                            : "hover:text-primary transition-colors"
+                        }`}
+                      >
                         <Link to={link.href}>{link.label}</Link>
                       </NavigationMenuLink>
                     </NavigationMenuItem>
@@ -158,7 +201,7 @@ export default function Navbar() {
           {data?.data?.email && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button className="rounded-full w-11 h-11 font-extrabold text-3xl">
+                <Button className="rounded-md w-11 h-11 font-extrabold text-3xl bg-transparent border hover:bg-white hover:text-primary">
                   {data?.data?.name.slice(0, 1).toUpperCase()}
                 </Button>
               </DropdownMenuTrigger>
@@ -186,7 +229,14 @@ export default function Navbar() {
           )}
 
           {!data?.data?.email && (
-            <Button asChild className="text-sm">
+            <Button
+              asChild
+              className={`text-sm bg-transparent shadow-none border py-5 w-28 ${
+                isHomePage
+                  ? "hover:bg-white hover:text-primary"
+                  : " border hover:bg-white hover:text-primary"
+              }`}
+            >
               <Link to="/login">Login</Link>
             </Button>
           )}

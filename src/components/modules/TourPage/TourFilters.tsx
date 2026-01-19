@@ -26,14 +26,14 @@ const TourFilters = () => {
     (item: { _id: string; name: string }) => ({
       label: item.name,
       value: item._id,
-    })
+    }),
   );
 
   const tourTypeOptions = tourTypeData?.map(
     (item: { _id: string; name: string }) => ({
       label: item.name,
       value: item._id,
-    })
+    }),
   );
 
   const handleDivisionChange = (value: string) => {
@@ -55,58 +55,70 @@ const TourFilters = () => {
     setSearchParams(params);
   };
   return (
-    <div className="border h-fit bg-white p-3 rounded-md shadow-md lg:w-72">
-      <div className="flex justify-between items-center">
-        <h1 className="font-medium text-lg">Filter</h1>
-        <Button onClick={handleClear} variant="outline">
-          Clear
-        </Button>
-      </div>
+    <div className="w-full lg:sticky lg:top-28">
+      <div className="bg-white/90 backdrop-blur border shadow-xs rounded-md p-5 lg:p-7 space-y-6">
+        {/* === Header === */}
+        <div className="flex items-center justify-between">
+          <h1 className="text-lg font-semibold text-gray-900">Filter Tours</h1>
 
-      <div className="mt-7">
-        <Select
-          onValueChange={handleTourTypeChange}
-          value={selectedTourType ? selectedTourType : ""}
-          disabled={tourTypeLoading}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Tour Type" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              {tourTypeOptions?.map(
-                (item: { value: string; label: string }) => (
+          <Button
+            onClick={handleClear}
+            variant="outline"
+            className="h-8 px-4 text-sm border-primary text-primary transition"
+          >
+            Clear
+          </Button>
+        </div>
+
+        {/* === Tour Type Filter === */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-600">Tour Type</label>
+
+          <Select
+            onValueChange={handleTourTypeChange}
+            value={selectedTourType ?? ""}
+            disabled={tourTypeLoading}
+          >
+            <SelectTrigger className="w-full rounded-lg bg-white shadow-none focus:ring-2 focus:ring-primary/30">
+              <SelectValue placeholder="Select tour type" />
+            </SelectTrigger>
+
+            <SelectContent className="rounded-lg">
+              <SelectGroup>
+                {tourTypeOptions?.map((item: any) => (
                   <SelectItem key={item.value} value={item.value}>
                     {item.label}
                   </SelectItem>
-                )
-              )}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
-      </div>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
 
-      <div className="mt-4">
-        <Select
-          onValueChange={handleDivisionChange}
-          value={selectedDivision ? selectedDivision : ""}
-          disabled={divisionLoading}
-        >
-          <SelectTrigger className="w-full">
-            <SelectValue placeholder="Division" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectGroup>
-              {divisionOptions?.map(
-                (item: { value: string; label: string }) => (
+        {/* === Division Filter === */}
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-gray-600">Division</label>
+
+          <Select
+            onValueChange={handleDivisionChange}
+            value={selectedDivision ?? ""}
+            disabled={divisionLoading}
+          >
+            <SelectTrigger className="w-full rounded-lg bg-white shadow-none focus:ring-2 focus:ring-primary/30">
+              <SelectValue placeholder="Select division" />
+            </SelectTrigger>
+
+            <SelectContent className="rounded-lg">
+              <SelectGroup>
+                {divisionOptions?.map((item: any) => (
                   <SelectItem key={item.value} value={item.value}>
                     {item.label}
                   </SelectItem>
-                )
-              )}
-            </SelectGroup>
-          </SelectContent>
-        </Select>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
       </div>
     </div>
   );

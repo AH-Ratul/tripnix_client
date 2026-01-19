@@ -22,7 +22,7 @@ const Subscription = () => {
           </div>
 
           {/* Right content */}
-          <div className="flex flex-col sm:flex-row items-stretch gap-3 xl:w-1/2">
+          <div className="flex flex-col sm:flex-row items-stretch gap-3 w-full sm:w-1/2">
             <Input
               placeholder="Your email"
               className="bg-white! text-black rounded-lg border-none w-full px-5 py-7 focus:ring-0"
