@@ -1,38 +1,38 @@
-import coxs from "../../assets/images/dest/coxs.jpg";
-import sajek from "../../assets/images/dest/sajek.jpg";
-import sreemangal from "../../assets/images/dest/sreemangal.jpg";
-import ratargul from "../../assets/images/dest/ratargul.jpg";
-import jaflong from "../../assets/images/dest/jaflong.jpg";
+import newyork from "../../assets/images/dest/newyork.jpg";
+import london from "../../assets/images/dest/london.jpg";
+import china from "../../assets/images/dest/china.jpg";
+import turkey from "../../assets/images/dest/turkey.jpg";
+import dubai from "../../assets/images/dest/dubai.jpg";
+import moscow from "../../assets/images/dest/moscow.jpg";
+import sydney from "../../assets/images/dest/sydney.jpg";
 
 export const popularDestinations = [
   {
-    country: "Bangladesh",
-    place: "Cox's Bazar",
-    image: coxs,
+    place: "New York",
+    image: newyork,
   },
   {
-    country: "Bandarban",
-    place: "Sajek",
-    image: sajek,
+    place: "London",
+    image: london,
   },
   {
-    country: "Moulovibazar",
-    place: "Sreemangal",
-    image: sreemangal,
+    place: "China",
+    image: china,
   },
   {
-    country: "Sylhet",
-    place: "Ratargul",
-    image: ratargul,
+    place: "Turkey",
+    image: turkey,
   },
   {
-    country: "Sylhet",
-    place: "Jaflong",
-    image: jaflong,
+    place: "Dubai",
+    image: dubai,
   },
   {
-    country: "Sylhet",
-    place: "Ratargul",
-    image: ratargul,
+    place: "Moscow",
+    image: moscow,
+  },
+  {
+    place: "Sydney",
+    image: sydney,
   },
 ];
